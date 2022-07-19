@@ -5,14 +5,14 @@
     <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
 
-    <!--COMPONENT FILES -->
+    <!-- IMPORTED COMPONENTS -->
     <script src="./js/Fish.js"></script>
     <script src="./js/Treasure.js"></script>
     <script src="./js/Rotation.js"></script>
     <script src="./js/Game.js"></script>
   </head>
   <body>
-    <a-scene physics="debug:false">
+    <a-scene physics>
       <!---Assets-->
       <a-a-assets>
         <a-asset-item id="island" src="assets/island/scene.gltf"></a-asset-item>
@@ -92,15 +92,15 @@
       <a-entity
         gltf-model="#scuba_driver"
         scale="0.1 0.1 0.1"
-        position="5 0 15"
+        position="5 0 27"
         rotation="0 90 -20"
-        diver-rotation-reader
         body="type: dynamic; mass: 0; shape: none;"
         shape="shape: cylinder;
           height: 100;
           radiusTop: 20;
           radiusBottom: 20;
           offset:50 100 -50"
+        diver-rotation-reader
       >
         <a-sphere
           id="bubble1"
@@ -118,6 +118,62 @@
         camera="active: true"
         look-controls
         position="0 10 25"
+      ></a-entity>
+
+      <!-----------------------------------Game Timer and Score------------------------------------------>
+      <a-entity id="header" position="1 5 0">
+        <!-- Title -->
+        <a-entity
+          position="-28.5 21.5 0"
+          text="font: exo2bold; align: center; width: 45; color: black; value:VR Scuba Dive"
+        ></a-entity>
+
+        <!-- Timer -->
+        <a-entity position="-23.5 19.3 0">
+          <a-entity
+            position=""
+            text="font: aileronsemibold; width: 14; color: black; value: TIME\nREMAINING"
+          ></a-entity>
+          <a-entity
+            id="timer"
+            position="-9.8 0.3 0"
+            text="font: exo2bold; align: center; width: 30; color: black; value: 00:00"
+          ></a-entity>
+        </a-entity>
+
+        <!-- Traget Status -->
+        <a-entity position="-18 19.3 0">
+          <a-entity
+            position=""
+            text="font: aileronsemibold; width: 13; color: black; value: TRAGETS\nREMAINING"
+          ></a-entity>
+          <a-entity
+            id="targets"
+            position="-7.8 0.3 0"
+            text="font: exo2bold; align: center; width: 30; color: black; value: 10"
+          ></a-entity>
+        </a-entity>
+
+        <!-- Score -->
+        <a-entity position="30.5 21.5 0">
+          <a-entity
+            position=""
+            text="font: exo2bold; align: center; width: 30; color: black; value: SCORE"
+          ></a-entity>
+          <a-entity
+            id="score"
+            position="0 -2 0"
+            text="font: exo2bold; align: center; width: 40; color: black; value: 0"
+          ></a-entity>
+        </a-entity>
+      </a-entity>
+
+      <!------------------------------------Game Over-------------------------------->
+      <a-entity
+        id="game_over_text"
+        position="0 20 0"
+        text="font: exo2bold; align: center; width: 100; color: white;value: Game Over!!!"
+        visible="false"
       ></a-entity>
     </a-scene>
   </body>
